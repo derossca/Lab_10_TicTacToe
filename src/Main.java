@@ -19,13 +19,17 @@ public class Main {
         //do while loop for the whole game
         do
         {
+            clearBoard();
+            display();
 
             continueYN = SafeInput.getYNConfirm(in, "Do you want to play again? ");
         } while(continueYN);
     }
 
     //Helper methods for the TicTacToe game
-    private static void clearBoard() //setting all board elements to a space
+
+    //setting all board elements to a space
+    private static void clearBoard()
     {
         for(int row = 0; row < ROW; row++)
         {
@@ -43,8 +47,7 @@ public class Main {
         {
             for(int col = 0; col < COL; col++)
             {
-                board[row][col] = " _|_ ";
-                System.out.print(board);
+                System.out.print(board[row][col] = " | ");
             }
             System.out.println();
         }
