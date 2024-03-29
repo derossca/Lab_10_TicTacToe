@@ -10,7 +10,18 @@ public class Main {
     {
         //pseudo code
 
+        //declaring variables
+        Scanner in = new Scanner(System.in);
+        int playerA;
+        int playerB;
+        boolean continueYN;
 
+        //do while loop for the whole game
+        do
+        {
+
+            continueYN = SafeInput.getYNConfirm(in, "Do you want to play again? ");
+        } while(continueYN);
     }
 
     //Helper methods for the TicTacToe game
@@ -48,54 +59,52 @@ public class Main {
     //checking to see if there is a win state for the specified player (X or O)
     private static boolean isWin(String player)
     {
-        //checking for a col win
-        private static boolean isColWin(String player)
-        {
-            for(int col = 0; col < COL; col++)
-            {
-                if(board[0][col].equals(player) && board[1][col].equals(player) && board[2][col].equals(player))
-                {
-                    return true;
-                }
-            }
-            return false; // no col win
-        }
-
-        //checking for a row win
-        private static boolean isRowWin(String player)
-        {
-            for(int row = 0; row < ROW; row++)
-            {
-                if(board[row][0].equals(player) && board[row][1].equals(player) && board[row][2].equals(player))
-                {
-                    return true;
-                }
-            }
-            return false; // no row win
-        }
-
-        //checks for a diagonal win
-        private static boolean isDiagonalWin(String player)
-        {
-            if((board[0][0].equals(player) && board[1][1].equals(player) && board[2][2].equals(player)) || (board[0][2].equals(player) && board[1][1].equals(player) && board[2][0].equals(player)))
-            {
-                return true;
-            }
-            return false; // no diagonal win
-        }
-
-        /*checks for a tie
-        private static boolean isTie()
-        {
-
-        }
-
-         */
-
         if(isColWin(player) || isRowWin(player) || isDiagonalWin(player))
         {
             return true;
         }
         return false;
     }
+
+    //checking for a col win
+    private static boolean isColWin(String player)
+    {
+        for(int col = 0; col < COL; col++)
+        {
+            if(board[0][col].equals(player) && board[1][col].equals(player) && board[2][col].equals(player))
+            {
+                return true;
+            }
+        }
+        return false; // no col win
+    }
+
+    //checking for a row win
+    private static boolean isRowWin(String player)
+    {
+        for(int row = 0; row < ROW; row++)
+        {
+            if(board[row][0].equals(player) && board[row][1].equals(player) && board[row][2].equals(player))
+            {
+                return true;
+            }
+        }
+        return false; // no row win
+    }
+
+    //checks for a diagonal win
+    private static boolean isDiagonalWin(String player) {
+        if ((board[0][0].equals(player) && board[1][1].equals(player) && board[2][2].equals(player)) || (board[0][2].equals(player) && board[1][1].equals(player) && board[2][0].equals(player))) {
+            return true;
+        }
+        return false; // no diagonal win
+    }
+
+    /*
+    private static boolean isTie()
+    {
+
+    }
+
+     */
 }
