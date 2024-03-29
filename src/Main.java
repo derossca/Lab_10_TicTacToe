@@ -12,17 +12,28 @@ public class Main {
 
         //declaring variables
         Scanner in = new Scanner(System.in);
-        int playerA;
-        int playerB;
+        String player = "";
+        int moveCnt = 0;
+        boolean done = false;
         boolean continueYN;
+        String trash = "";
 
         //do while loop for the whole game
         do
         {
-            clearBoard();
-            display();
+            clearBoard(); // makes sure board is clear
+            moveCnt = 0;
 
-            continueYN = SafeInput.getYNConfirm(in, "Do you want to play again? ");
+            //do while loop for player X
+            do
+            {
+                display(); // displays board at start of game
+
+            } while(!done)
+
+
+
+            continueYN = SafeInput.getYNConfirm(in, "Do you want to play again?");
         } while(continueYN);
     }
 
@@ -103,11 +114,17 @@ public class Main {
         return false; // no diagonal win
     }
 
-    /*
+
     private static boolean isTie()
     {
-
+        for(int row = 0; row < ROW; row++)
+        {
+            for(int col = 0; col < COL; col++)
+            {
+                if
+            }
+        }
     }
 
-     */
+
 }
