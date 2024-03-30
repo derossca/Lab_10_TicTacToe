@@ -43,7 +43,7 @@ public class Main {
                 } while (isValidMove(row, col));
 
                 board[row][col] = player;
-                display();
+
 
                 moveCnt = moveCnt + 1;
 
