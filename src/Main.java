@@ -25,23 +25,29 @@ public class Main {
         {
             clearBoard();// clearing board to start the game
             moveCnt = 0;
-
+            player = "X"; //X always begins first
             //do while loop for player's turn
             do
             {
+                System.out.println("Player X's turn!");
+                display();
+
                 do
                 {
-                    System.out.println("Player X's turn!");
-                    player = "X";
-                    display();
-
                     row = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
                     row = row - 1;
                     col = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
                     col = col - 1;
+                    isValidMove(row, col);
+                    if (isValidMove(row, col))
+                    {
+                        done = true;
+                    } else {
+                        System.out.println("Please enter a valid move: ");
+                    }
                     board[row][col] = player;
                     display();
-                } while (isValidMove(row, col));
+                } while (!done);
 
 
 
