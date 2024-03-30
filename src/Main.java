@@ -24,25 +24,32 @@ public class Main {
         do
         {
             clearBoard();// clearing board to start the game
+            moveCnt = 0;
 
-            //do while loop for first player's turn
+            //do while loop for player's turn
             do
             {
-                System.out.println("Player X's turn!");
-                player = "X";
-
-                display(); //to display board for start of game
-
-                row = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
-                col = SafeInput.getRangedInt(in, "Pick a column", 1, 3);
-                board[row][col] = player;
-                if(isValidMove(row, col))
+                do
                 {
-                    done = true;
+                    System.out.println("Player X's turn!");
+                    player = "X";
                     display();
-                }
 
-            } while(!done);
+                    row = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
+                    row = row - 1;
+                    col = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
+                    col = col - 1;
+                    System.out.println();
+                } while (isValidMove(row, col));
+
+                board[row][col] = player;
+                display();
+
+                moveCnt = moveCnt + 1;
+
+
+                done = true; // just so loop doesn't keep looping for now***
+            } while (!done);
 
             continueYN = SafeInput.getYNConfirm(in, "Do you want to play again?");
         } while(continueYN);
