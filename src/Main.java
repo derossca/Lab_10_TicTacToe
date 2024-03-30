@@ -39,10 +39,10 @@ public class Main {
                     row = row - 1;
                     col = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
                     col = col - 1;
-                    System.out.println();
+                    board[row][col] = player;
+                    display();
                 } while (isValidMove(row, col));
 
-                board[row][col] = player;
 
 
                 moveCnt = moveCnt + 1;
@@ -76,7 +76,7 @@ public class Main {
         {
             for(int col = 0; col < COL; col++)
             {
-                System.out.print(board[row][col] = " | ");
+                System.out.print(board[row][col] + " | ");
             }
             System.out.println();
         }
@@ -91,7 +91,7 @@ public class Main {
     //checking to see if there is a win state for the specified player (X or O)
     private static boolean isWin(String player)
     {
-        if(isColWin(player) || isRowWin(player) || isDiagonalWin(player))
+        if (isColWin(player) || isRowWin(player) || isDiagonalWin(player))
         {
             return true;
         }
