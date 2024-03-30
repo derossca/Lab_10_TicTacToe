@@ -13,6 +13,8 @@ public class Main {
         //declaring variables
         Scanner in = new Scanner(System.in);
         String player = "";
+        int row = 0;
+        int col = 0;
         int moveCnt = 0;
         boolean done = false;
         boolean continueYN;
@@ -21,17 +23,26 @@ public class Main {
         //do while loop for the whole game
         do
         {
-            clearBoard(); // makes sure board is clear
-            moveCnt = 0;
+            clearBoard();// clearing board to start the game
 
-            //do while loop for player X
+            //do while loop for first player's turn
             do
             {
-                display(); // displays board at start of game
+                System.out.println("Player X's turn!");
+                player = "X";
 
-            } while(!done)
+                display(); //to display board for start of game
 
+                row = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
+                col = SafeInput.getRangedInt(in, "Pick a column", 1, 3);
+                board[row][col] = player;
+                if(isValidMove(row, col))
+                {
+                    done = true;
+                    display();
+                }
 
+            } while(!done);
 
             continueYN = SafeInput.getYNConfirm(in, "Do you want to play again?");
         } while(continueYN);
@@ -114,7 +125,7 @@ public class Main {
         return false; // no diagonal win
     }
 
-
+/*
     private static boolean isTie()
     {
         for(int row = 0; row < ROW; row++)
@@ -125,6 +136,8 @@ public class Main {
             }
         }
     }
+
+ */
 
 
 }
