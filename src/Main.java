@@ -23,6 +23,40 @@ public class Main {
         //do while loop for the whole game
         do
         {
+            //do while loop to start game
+            do
+            {
+                clearBoard();
+                moveCnt = 0;
+                //NEED TO SET PLAYER TO X
+                player = "X";
+                //do while loop for valid move
+                do
+                {
+                    System.out.println("Player " + player + "'s turn!");
+                    display(); // displaying board
+
+                    row = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
+                    row = row - 1;
+                    col = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
+                    col = col - 1;
+                    if (isValidMove(row, col))
+                    {
+                        done = true;
+                    }
+                    else
+                    {
+                        System.out.println("Please enter a valid move!");
+                    }
+
+                } while (!done);
+
+                board[row][col] = player;
+                display();
+                moveCnt = moveCnt + 1;
+
+
+            } while (!done);
 
             continueYN = SafeInput.getYNConfirm(in, "Do you want to play again?");
         } while(continueYN);
@@ -51,7 +85,7 @@ public class Main {
             {
                 System.out.print(board[row][col] + " | ");
             }
-            System.out.println();
+            System.out.println(" ");
         }
     }
 
@@ -99,25 +133,32 @@ public class Main {
 
     //checks for a diagonal win
     private static boolean isDiagonalWin(String player) {
-        if ((board[0][0].equals(player) && board[1][1].equals(player) && board[2][2].equals(player)) || (board[0][2].equals(player) && board[1][1].equals(player) && board[2][0].equals(player))) {
+        if (board[0][0].equals(player) && board[1][1].equals(player) && board[2][2].equals(player))
+        {
             return true;
         }
-        return false; // no diagonal win
+        else if (board[0][2].equals(player) && board[1][1].equals(player) && board[2][0].equals(player))
+        {
+            return true;
+        }
+        else
+            return false; // no diagonal win
     }
 
-/*
-    private static boolean isTie()
+
+    private static boolean isTie(String player)
     {
         for(int row = 0; row < ROW; row++)
         {
             for(int col = 0; col < COL; col++)
             {
-                if
+
             }
         }
+        return false; //no tie yet
     }
 
- */
+
 
 
 }
