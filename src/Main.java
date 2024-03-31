@@ -12,7 +12,10 @@ public class Main {
 
         //declaring variables
         Scanner in = new Scanner(System.in);
-        String player = "X";
+        //Need to figure out how to get appropriate symbols to display***
+        String player = "";
+        String playerX = "X";
+        String playerO = "O";
         int row = 0;
         int col = 0;
         int moveCnt = 0;
@@ -25,6 +28,7 @@ public class Main {
         {
             clearBoard();
             moveCnt = 0;
+            player = playerX;
 
             //do while loop to start game
             do
@@ -49,11 +53,12 @@ public class Main {
                         System.out.println("Please enter a valid move!");
                     }
 
-                    if (player == "O")
+                    //NEED TO GET APPROPRIATE SYMBOLS TO DISPLAY
+                    if (player == playerX)
                     {
-                        player = "X";
-                    } else if (player == "X") {
-                        player = "O";
+                        player = playerO;
+                    } else if (player == playerO) {
+                        player = playerX;
                     }
 
                 } while (!done);
@@ -65,8 +70,16 @@ public class Main {
                 board[row][col] = player;
                 display();
                 System.out.println();
+
                 moveCnt = moveCnt + 1;
 
+                if(moveCnt >= 5){
+                    isWin(player);
+                    if(isWin(player)){
+                        System.out.println("Player " + player + " wins!");
+                        done = true;
+                    }
+                }
 
 
             } while (!done);
