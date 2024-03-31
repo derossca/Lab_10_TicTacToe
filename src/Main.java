@@ -12,7 +12,7 @@ public class Main {
 
         //declaring variables
         Scanner in = new Scanner(System.in);
-        String player = "";
+        String player = "X";
         int row = 0;
         int col = 0;
         int moveCnt = 0;
@@ -23,13 +23,12 @@ public class Main {
         //do while loop for the whole game
         do
         {
+            clearBoard();
+            moveCnt = 0;
+
             //do while loop to start game
             do
             {
-                clearBoard();
-                moveCnt = 0;
-                //NEED TO SET PLAYER TO X
-                player = "X";
                 //do while loop for valid move
                 do
                 {
@@ -38,8 +37,9 @@ public class Main {
 
                     row = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
                     row = row - 1;
-                    col = SafeInput.getRangedInt(in, "Pick a row", 1, 3);
+                    col = SafeInput.getRangedInt(in, "Pick a column", 1, 3);
                     col = col - 1;
+
                     if (isValidMove(row, col))
                     {
                         done = true;
@@ -49,11 +49,24 @@ public class Main {
                         System.out.println("Please enter a valid move!");
                     }
 
+                    if (player == "O")
+                    {
+                        player = "X";
+                    } else if (player == "X") {
+                        player = "O";
+                    }
+
                 } while (!done);
 
+                done = false;
+
+                System.out.println();
+                System.out.println("Current Board");
                 board[row][col] = player;
                 display();
+                System.out.println();
                 moveCnt = moveCnt + 1;
+
 
 
             } while (!done);
