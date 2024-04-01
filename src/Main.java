@@ -12,7 +12,7 @@ public class Main {
 
         //declaring variables
         Scanner in = new Scanner(System.in);
-        //Need to figure out how to get appropriate symbols to display***
+
         String player = "";
         String playerX = "X";
         String playerO = "O";
@@ -53,13 +53,7 @@ public class Main {
                         System.out.println("Please enter a valid move!");
                     }
 
-                    //NEED TO GET APPROPRIATE SYMBOLS TO DISPLAY
-                    if (player == playerX)
-                    {
-                        player = playerO;
-                    } else if (player == playerO) {
-                        player = playerX;
-                    }
+
 
                 } while (!done);
 
@@ -68,6 +62,7 @@ public class Main {
                 System.out.println();
                 System.out.println("Current Board");
                 board[row][col] = player;
+
                 display();
                 System.out.println();
 
@@ -78,9 +73,19 @@ public class Main {
                     if(isWin(player)){
                         System.out.println("Player " + player + " wins!");
                         done = true;
-                    } //WHAT TO PUT HERE?
-                }
+                    } else if (isTie()) {
+                        System.out.println("It's a tie!");
+                        done = true;
+                    }
 
+                }
+                //NEED TO GET APPROPRIATE SYMBOLS TO DISPLAY
+                if (player == playerX)
+                {
+                    player = playerO;
+                } else if (player == playerO) {
+                    player = playerX;
+                }
 
             } while (!done);
 
@@ -172,16 +177,51 @@ public class Main {
     }
 
 
-    private static boolean isTie(String player)
+    private static boolean isTie()
     {
-        for(int row = 0; row < ROW; row++)
-        {
-            for(int col = 0; col < COL; col++)
-            {
+        int tieCnt = 0;
 
+        for (int row = 0; row < ROW; row ++)
+        {
+            if (board[row][0].equals("X") || board[row][1].equals("X") || board[row][2].equals("X"))
+            {
+                if (board[row][0].equals("O") || board[row][1].equals("O") || board[row][2].equals("O"))
+                {
+                    tieCnt++;
+                }
             }
         }
-        return false; //no tie yet
+
+        for (int col = 0; col < COL; col ++)
+        {
+            if (board[0][col].equals("X") || board[1][col].equals("X") || board[2][col].equals("X"))
+            {
+                if (board[0][col].equals("O") || board[1][col].equals("O") || board[2][col].equals("O"))
+                {
+                    tieCnt++;
+                }
+            }
+        }
+
+        if (board[0][0].equals("X") || board[1][1].equals("X") || board [2][2].equals("X"))
+        {
+            if (board[0][0].equals("O") || board[1][1].equals("O") || board [2][2].equals("O")){
+                tieCnt++;
+            }
+        }
+
+        if (board[2][0].equals("X") || board[1][1].equals("X") || board [0][2].equals("X"))
+        {
+            if (board[2][0].equals("O") || board[1][1].equals("O") || board [0][2].equals("O")){
+                tieCnt++;
+            }
+        }
+
+        if (tieCnt == 8){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 
