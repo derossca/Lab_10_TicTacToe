@@ -12,7 +12,6 @@ public class Main {
 
         //declaring variables
         Scanner in = new Scanner(System.in);
-
         String player = "";
         String playerX = "X";
         String playerO = "O";
