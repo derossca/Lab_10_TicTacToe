@@ -227,7 +227,7 @@ public class Main {
             }
         }
 
-        //this is the other diagonal tie condition that eliminates a vector with mixed symobls and increments tieCnt
+        //this is the other diagonal tie condition that eliminates a vector with mixed symbols and increments tieCnt
         if (board[2][0].equals("X") || board[1][1].equals("X") || board [0][2].equals("X"))
         {
             if (board[2][0].equals("O") || board[1][1].equals("O") || board [0][2].equals("O")){
